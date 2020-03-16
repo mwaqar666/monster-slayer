@@ -101,6 +101,7 @@ new Vue({
             this.initiateMonsterAction();
         },
 
+        // Initiate Monster Action
         initiateMonsterAction: function () {
             let action = this.monsterActions[Math.round(Math.random() * (this.monsterActions.length - 1))];
             if (action === 'heal') {
