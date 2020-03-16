@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="style.css">
+        <title>Vue</title>
+    </head>
+    <body class="grey darken-4">
+        <div id="app">
+            <div class="container">
+                <div class="card">
+                    <div class="title game-title">
+                        <h3 class="center-align">Monster Slayer</h3>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div v-if="gameState === 0">
+                            <div class="row">
+                                <div class="col s12">
+                                    <button class="btn-large black-text z-depth-0 green action-button" @click="initiateGame()">Start Game</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="gameState === 1">
+                            <div class="row">
+                                <div class="col s6">
+                                    <div class="progress progress-bar">
+                                        <div class="determinate health-amount center" :class="HealthColor('mine')" :style="HealthBar('mine')">
+                                            <p class="flow-text">{{ myHealth }}%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="progress progress-bar">
+                                        <div class="determinate health-amount center" :class="HealthColor('monster')" :style="HealthBar('monster')">
+                                            <p class="flow-text">{{ monsterHealth }}%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s3">
+                                    <button class="btn-large black-text z-depth-0 blue accent-4 action-button" @click="initiateMyAction('attack', 'basic')">Attack</button>
+                                </div>
+                                <div class="col s3">
+                                    <button class="btn-large black-text z-depth-0 yellow action-button" @click="initiateMyAction('attack', 'special')">Special Attack</button>
+                                </div>
+                                <div class="col s3">
+                                    <button class="btn-large black-text z-depth-0 green action-button" @click="initiateMyAction('heal')" :disabled="enableOrDisableHeal()">Heal</button>
+                                </div>
+                                <div class="col s3">
+                                    <button class="btn-large black-text z-depth-0 red action-button">Give Up</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="card z-depth-0">
+                                        <h5 class="center-align action-message successful-action">Damage Taken</h5>
+                                    </div>
+                                    <div class="card z-depth-0">
+                                        <h5 class="center-align action-message unsuccessful-action">Damage Given</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="sandbox.js"></script>
+    </body>
+</html>
